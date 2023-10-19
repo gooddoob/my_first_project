@@ -1,0 +1,187 @@
+#include <stdio.h>
+
+char check_alpha(char c)
+{
+  switch(c)
+    {
+      case 'a':
+      case 'b':
+      case 'c':
+      case 'd':
+      case 'e':
+      case 'f':
+      case 'g':
+      case 'h':
+      case 'i':
+      case 'j':
+      case 'k':
+      case 'l':
+      case 'm':
+      case 'n':
+      case 'o':
+      case 'p':
+      case 'q':
+      case 'r':
+      case 's':
+      case 't':
+      case 'u':
+      case 'v':
+      case 'w':
+      case 'x':
+      case 'y':
+      case 'z':
+        printf("%c는 알파벳 문자입니다.",c);
+        break;
+      default:
+        printf("%c는 알파벳 문자가 아닙니다.",c);
+        break;
+    }
+}
+int main(void)
+{
+  char c;
+  printf("문자를 입력하세요: ");
+  scanf("%c",&c);
+  check_alpha(c);
+  
+  return 0;
+}
+
+#include <stdio.h>
+
+int check_alpha(char c)
+{
+  if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+    return 1;
+  else
+    return 0;
+}
+int main(void)
+{
+  char c;
+  printf("문자를 입력하세요: ");
+  scanf("%c",&c);
+  if (check_alpha(c)==1)
+    printf("%c는 알파벳 문자입니다.",c);
+  else
+    printf("%c는 알파벳 문자가 아닙니다.",c);
+  
+  return 0;
+}
+
+#include <stdio.h>
+
+int is_leaf(int year)
+{
+ if (year%4==0 && year%100!=0 || year % 400 == 0)
+   return 1;
+  else
+   return 0;
+}
+int main(void)
+{
+  int year;
+  printf("년도를 입력하시오: ");
+  scanf("%d",&year);
+  if (is_leaf(year) == 1)
+    printf("%d년은 윤년입니다.",year);
+  else
+    printf("%d년은 윤년이 아닙니다.",year);
+  return 0;
+}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int randint()
+{
+  int ran;
+  int rand();
+  ran=(rand()%81+10);//10부터 90까지의 난수 생성
+  
+  return ran;
+}
+int main(void)
+{
+  srand(time(NULL));//randit함수안에 넣을경우 너무 빠른시간안에 값이 생성되어 변하지 않으므로 main함수안에 넣는다.
+  for (int i=0;i<10;i++)
+    printf("%d ",randint());
+  
+  return 0;
+}
+
+#include <stdio.h>
+
+int get_first_digit(int n)
+{
+  while(n>=10)
+    {
+    n = n / 10;//한자리수가 될때까지 계속 10으로 나누어서 맨 앞자리 수 찾기
+    }
+  return n;
+}
+int main(void)
+{
+  int n;
+  printf("정수를 입력하시오: ");
+  scanf("%d",&n);
+  printf("가장 상위 자리수는 %d입니다.",get_first_digit(n));
+  
+  return 0;
+}
+
+#include <stdio.h>                                                   
+
+int print_menu()
+{
+  printf("<1> 잔액\n");
+  printf("<2> 입금\n");
+  printf("<3> 출금\n");
+  printf("<4> 종료\n");
+  printf("메뉴를 선택하시오: ");
+  
+  return 0;
+}
+
+int act_bank(int money)
+{
+  int money_inout,n;
+  scanf("%d",&n);
+  if (n==1)
+    printf("잔고는 %d입니다.\n\n",money);
+  else if (n==2)
+  {
+    printf("입금 금액을 입력하시오: ");
+    scanf("%d",&money_inout);
+    money += money_inout;//입금 금액 추가
+    printf("잔고는 %d입니다.\n\n",money);
+  }
+  else if (n==3)
+  {
+    printf("출금 금액을 입력하시오: ");
+    scanf("%d",&money_inout);
+    money -= money_inout;//출금 금액 빼기
+    printf("잔고는 %d입니다.\n\n",money);
+  }
+  else if (n==4)
+    return 4;
+  return money;
+}
+
+int main(void)
+{
+  int money = 0;//기본 잔고 값을 0으로 초기화
+  int n;
+  while(1)//무한 반복
+    {
+      printf("********** Welcome to Express ATM *********\n");
+      print_menu();
+      n = act_bank(money);
+      if (n==4)//종료를 선택하면 반복을 빠져나와 종료
+        break;
+      money = n;//입금,출금한 금액 저장
+    }
+  return 0;
+}

@@ -1,0 +1,29 @@
+int act_bank()
+{
+  int money;
+  int money_inout,n;
+  scanf("%d",&n);
+  if (n==1)
+  {
+    printf("잔고는 %d입니다.\n",money);
+    return money;
+  }
+  else if (n==2)
+  {
+    printf("입금 금액을 입력하시오: ");
+    scanf("%d",&money_inout);
+    money += money_inout;
+    printf("잔고는 %d입니다.\n",money);
+    return money;
+  }
+  else if (n==3)
+  {
+    printf("출금 금액을 입력하시오: ");
+    scanf("%d",&money_inout);
+    money -= money_inout;
+    printf("잔고는 %d입니다.\n",money);
+    return money;
+  }
+  else if (n==4)
+    return 4;
+}

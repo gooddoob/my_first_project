@@ -1,0 +1,193 @@
+2번문제
+#include <stdio.h>
+
+int main(void)
+{
+  int sum,i; 
+  sum = 0;
+  for (int i=1; i<101; i++)//i가 1부터 100까지 1씩 더해지면서 반복
+    {if (i%3==0)//만약 3으로 나누었을때 나머지가 0이면 sum에 1씩 더하기
+        sum += i;
+    }
+    printf("1부터 100사이 모든 3의 배수의 합은 %d입니다.",sum);
+    return 0;
+}
+4번문제
+#include <stdio.h>
+
+int main(void)
+{
+  int a;
+  printf("정수를 입력하시오: ");
+  scanf("%d",&a);
+  printf("약수: ");
+  for (int i=1; i<=a; i++)//i가 1부터 a까지 1씩 더해지면서 반복
+    {
+      if ((a%i)==0)//a를i로 나누었을때 나머지가 0일때
+        printf("%d ",i);
+    }
+  return 0;
+}
+
+6번 문제
+#include <stdio.h>
+
+int main(void)
+{
+  int n,sum;
+  sum = 0;
+  printf("n의 값을 입력하시오: ");
+  scanf("%d",&n);
+  for (int i=1; i<=n; i++)//i가 1부터 n까지 반복하면서 증가
+      sum += i*i;//sum에 i의 제곱값을 계속 더함
+  printf("계산값은 %d",sum);
+
+  return 0;
+}
+
+10번
+#include <stdio.h>
+
+int main(void)
+{
+  for (int i=2; i<=100; i++)//i를 2부터 100까지 1씩 증가시키며 반복
+    {
+      int sum=0;
+      for (int j=1; j<=i; j++)//j를 1부터 i까지 1씩 증가시키며 반복
+        {
+          if (i%j==0)//i를 j로 나누었을때 나머지가 0이면
+            sum += 1;
+        }
+      if (sum==2)
+        printf("%d ",i);
+    }
+  return 0;
+}
+
+12번
+/*
+#include <stdio.h>
+
+int main(void)
+{
+  int height;
+  do
+    {
+      printf("막대의 높이(종료:-1): ");
+      scanf("%d",&height);
+      for (int i=0;i<=height;i++)
+        {
+        if(height>=0)
+          printf("*");
+        else
+          continue;
+        }
+      printf("\n");
+    } while(height >= 0);
+}
+*/
+#include <stdio.h>
+
+int main(void)
+{
+  int height;
+  do//일단 한번은 실행
+    {
+      printf("막대의 높이(종료:-1): ");
+      scanf("%d",&height);
+      for (int i=1;i<=height;i++)//i가 height만큼 1씩 증가하며 반복
+          printf("*");
+      printf("\n");
+    } while(height >= 0);//height가 양수일때 반복
+}
+
+14번
+#include <stdio.h>
+
+int main(void)
+{
+  int f1,f2,f3,fn;
+  f1=0;
+  f2=1;
+  printf("몇번째 항까지 구할까요? ");
+  scanf("%d",&fn);
+  printf("%d %d ",f1,f2);
+  for (int i=1; i<fn; i++)//i가 1부터 입력된수전까지 반복
+    {
+      f3 = f1+f2;
+      printf("%d, ",f3);
+      f1 = f2;
+      f2 = f3;
+    }
+  return 0;
+}
+16
+
+#include <stdio.h>
+
+int main(void)
+{
+  int save,result;
+  result = 0;
+  printf("정수를 입력하시오: ");
+  scanf("%d",&save);
+  do
+    {
+      result = (save%10);//result에 save를 10으로 나눈 나머지 저장
+      save = (save/10);//save에는 save를 10으로 나눈 몫을 저장
+      printf("%d",result);
+    }while(save!=0);
+  return 0;
+}
+
+18
+
+#include <stdio.h>
+
+int main(void)
+{
+  int num;
+  double result=0;
+  printf("항의 개수: ");
+  scanf("%d",&num);
+  for (double i=1;i<=num;i++)//i가 1부터 num까지 1씩 더해지며 반복
+    //계산 오류를 막기위해 i는 실수형으로 정의
+    {
+      result += (1/i);
+    }
+  printf("수열의 합=%f",result);
+  return 0;
+}
+
+20.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(void)
+{
+  int nan,stick,my;
+  int rand();
+  stick = 12;
+  srand(time(NULL));//시간을 이용해서 난수 변경
+  while(stick!=0)
+    {
+      printf("현재 스틱의 개수 %d\n",stick);
+      printf("몇개의 스틱을 가져가겠습니까? :");
+      scanf("%d",&my);
+      stick -= my;
+      if (stick<=0)//만약 내가 뽑은 뒤 스틱 개수가 0이 되면 나의 패배
+      {
+        printf("\n당신이 졌습니다.");
+        break;//지는 즉시 while문 탈출
+      }
+      nan = (rand()%4);//0에서 3까지의 난수 생성
+      if (stick<nan)
+        nan = stick;
+      printf("컴퓨터는 %d개의 스틱을 가져갔습니다.\n\n",nan);
+      stick -= nan;
+      if (stick==0)//컴퓨터가 뽑은뒤 스틱의 개수가 0이 되면 나의 승리
+        printf("컴퓨터가 졌습니다.");
+    }
+  return 0;        
+}
